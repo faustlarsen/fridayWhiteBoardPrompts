@@ -1,0 +1,73 @@
+Question #4: Checking for Uniqueness
+Write an algorithm that determines whether all the elements in a string are unique. You may not convert the string into an array or use array methods to solve this problem. The algorithm should return a boolean.
+
+Example
+Input: "hello"
+Output: false
+
+Input: "copyright"
+Output: true
+______________________________________________
+
+//is it a string if not return error 
+//run nested for loops and compare index against each other
+//if === return false
+
+const unique = (string) => {
+   if (typeof string != 'string'){
+    return 'Its not a string';
+  }
+  for (let i = 0; i < string.length; i++) {
+    for (let x = i + 1; x < string.length; x++) {  //following index
+      if (string[i] === string[x]) {
+        return false
+      }
+    }
+  }
+  return true;
+}
+
+
+console.log(unique('hello'));      
+console.log(unique('copyright'));
+
+______________________________________________
+
+//is it a string if not return error 
+//are they lower case or upper case, are they the same
+//if length of the string is 1 return true
+//if sliced string at index 1 === string at 0 return false
+// else return array unique true 
+
+
+const unique = (string) => {
+  if (typeof string != 'string'){
+    return 'Its not a string';
+  }
+  if (string.length === 1){
+    return true;
+  } else {
+    if (string.slice(1).match(string[0])){
+      return false;
+    } else {
+      return unique(string.slice(1));
+    }
+  }
+  return true;    //not sure is this is a clean way
+}
+
+console.log(unique('hello'));      
+console.log(unique('copyright'));
+
+
+
+
+The splice() method returns the removed item(s) in an array and slice() method returns the selected element(s) in an array, as a new array object.
+
+The splice() method changes the original array and slice() method doesn’t change the original array. slice() method returns the selected element(s) in an array, as a new array object.
+
+The splice() method can take n number of arguments:
+
+The substring() method extracts the characters from a string, between two specified indices, and returns the new sub string. This method extracts the characters in a string between "start" and "end", not including "end" itself. If "start" is greater than "end", this method will swap the two arguments
+
+The slice() method returns the selected elements in an array, as a new array object. The slice() method selects the elements starting at the given start argument, and ends at, but does not include, the given end argument. Note: The original array will not be changed.
